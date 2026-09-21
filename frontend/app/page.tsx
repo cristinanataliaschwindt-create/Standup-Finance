@@ -2,9 +2,7 @@
 
 import { useState } from 'react';
 import { isConnected, requestAccess, signTransaction } from '@stellar/freighter-api';
-// The Soroban client is generated outside the frontend TypeScript project.
-// @ts-expect-error Generated client is not included in the frontend declarations.
-import { Client as AhorroClient } from '../../contracts/ahorro/src/index';
+import { Client as AhorroClient } from '../src/contracts/ahorro/src/index';
 
 // Tu Contract ID generado en Testnet
 const CONTRACT_ID = 'CB7WHVS6LV65H7V4LOOL7P27DUH7GNOZIZFD33Q5TOPOHCV64ZBI5KTG';
@@ -14,6 +12,22 @@ export default function Home() {
   const [ahorroTotal, setAhorroTotal] = useState<number>(0);
   const [cargando, setCargando] = useState<boolean>(false);
   const [mensaje, setMensaje] = useState<string>('');
+
+  const actualizarSaldoActual = async (publicKey: string) => {
+    try {
+      const client = new AhorroClient({
+        networkPassphrase: 'Test SDF Network ; September 2015',
+        contractId: CONTRACT_ID,
+        rpcUrl: 'https://soroban-testnet.stellar.org',
+        publicKey,
+      });
+      const tx = await client.consultar_saldo({ usuario: publicKey });
+      setAhorroTotal(Number(tx.result));
+    } catch (error) {
+      console.error('Error al consultar saldo:', error);
+      setMensaje('No se pudo consultar el saldo en Soroban.');
+    }
+  };
 
   // 1. Conectar con la billetera Freighter
  const conectarBilletera = async () => {
@@ -160,8 +174,4 @@ const comprarSustituto = async () => {
       </div>
     </main>
   );
-}
-
-function actualizarSaldoActual(publicKey: any) {
-  throw new Error('Function not implemented.');
 }
