@@ -1,6 +1,6 @@
-# Plan de Implementación: MVP (Soroban + Frontend Next.js + Browser Extension)
+# Plan de Implementación: MVP (Soroban + Frontend Next.js + Browser Extension + PWA)
 
-Este plan detalla las tareas para la Fase 1.1, 1.2, 1.3 y 1.4 del roadmap.
+Este plan detalla las tareas para las Fases 1.1 — 2.1 del roadmap.
 
 ## Fase 1.1: Smart Contract Foundation
 ### Grupo 1: Estructuras de Datos
@@ -68,3 +68,17 @@ Este plan detalla las tareas para la Fase 1.1, 1.2, 1.3 y 1.4 del roadmap.
 - `[x]` Crear una nueva página en Next.js (`frontend/app/invest/page.tsx`) dedicada a recibir el redireccionamiento.
 - `[x]` Implementar auto-conexión a Freighter al montar la página y llamada a Soroban (`registrar_ahorro`) de forma transparente.
 - `[x]` Mostrar un "Estado de éxito" y luego devolver al usuario a su flujo original (cerrar la pestaña).
+
+## Fase 2.1: PWA Mobile-First
+### Grupo 14: Infraestructura PWA
+- `[x]` Crear `frontend/public/manifest.json` con nombre, íconos, colores y modo `standalone`.
+- `[x]` Crear `frontend/public/sw.js` (Service Worker): Cache-First para estáticos, Network-First para APIs.
+- `[x]` Generar íconos PWA de la marca (192x192 y 512x512) en `frontend/public/icons/`.
+
+### Grupo 15: Integración en Next.js
+- `[x]` Actualizar `frontend/app/layout.tsx` con metadatos PWA, `<link rel="manifest">`, Apple Web App tags y registro automático del Service Worker.
+- `[x]` Actualizar `frontend/next.config.ts` con headers correctos para el SW y manifest.
+
+### Grupo 16: Optimización Mobile CSS
+- `[x]` Actualizar `frontend/app/globals.css` con tokens de diseño (beige, marrón, naranja), reglas `safe-area-inset`, `100dvh`, touch targets mínimos de 44px y scroll sin scrollbar.
+
