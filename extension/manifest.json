@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "Standup Finance - Smart Substitution",
+  "version": "1.0",
+  "description": "Prototipo para detectar productos en el carrito de e-commerce y sugerir sustitutos que generen microinversiones.",
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "Standup Finance"
+  },
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://www.carrefour.com.ar/*",
+    "https://diaonline.supermercadosdia.com.ar/*",
+    "https://www.cotodigital3.com.ar/*"
+  ],
+  "background": {
+    "service_worker": "scripts/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.carrefour.com.ar/*",
+        "https://diaonline.supermercadosdia.com.ar/*",
+        "https://www.cotodigital3.com.ar/*"
+      ],
+      "js": ["scripts/content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
