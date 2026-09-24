@@ -35,7 +35,7 @@ export const PRODUCT_CATALOG: CatalogProduct[] = [
     original: {
       merchant: 'dia',
       productName: 'Café Nescafe Gold 95g',
-      price: 15.379,
+      price: 15379,
       image: '/products/cafe Nescafe Gold 95g.jpg',
       url: 'https://diaonline.supermercadosdia.com.ar/nescafe-gold-x-95-gr-308897/p?idsku=308897',
       source: 'Catálogo administrado',
