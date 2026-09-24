@@ -1,4 +1,4 @@
-const CACHE_NAME = 'standup-finance-v1';
+const CACHE_NAME = 'standup-finance-v2';
 
 // Activos esenciales que se cachean al instalar el SW
 const STATIC_ASSETS = [
@@ -39,6 +39,12 @@ self.addEventListener('fetch', (event) => {
 
   // No interceptar peticiones a la API ni a terceros (Freighter, Stellar RPC)
   if (url.pathname.startsWith('/api/') || url.origin !== self.location.origin) {
+    return;
+  }
+
+  // Next.js chunks and documents must stay fresh during development and deployments.
+  if (url.pathname.startsWith('/_next/') || request.mode === 'navigate') {
+    event.respondWith(fetch(request));
     return;
   }
 

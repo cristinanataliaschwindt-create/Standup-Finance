@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { CheckCircle2, Loader2, Wallet } from 'lucide-react';
 // Asumimos que Freighter API y el cliente de Soroban están disponibles como en page.tsx
@@ -8,6 +8,14 @@ import { isConnected, requestAccess, signTransaction } from '@stellar/freighter-
 // import { Client as AhorroClient } from '../../src/contracts/ahorro/src/index';
 
 export default function InvestPage() {
+  return (
+    <Suspense fallback={<div className="flex min-h-screen items-center justify-center bg-[#F5F5DC] text-[#8B4513]">Cargando inversión...</div>}>
+      <InvestContent />
+    </Suspense>
+  );
+}
+
+function InvestContent() {
   const searchParams = useSearchParams();
   const amountParam = searchParams.get('amount');
   const itemParam = searchParams.get('item');

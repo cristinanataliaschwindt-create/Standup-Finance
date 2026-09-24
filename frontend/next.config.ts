@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  allowedDevOrigins: ['192.168.1.28'],
   // Permitir que el Service Worker y manifest sean servidos correctamente
   headers: async () => [
     {

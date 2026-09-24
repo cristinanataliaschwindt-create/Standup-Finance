@@ -28,6 +28,7 @@ import {
 } from 'lucide-react';
 import { isConnected, requestAccess, signTransaction } from '@stellar/freighter-api';
 import { Client as AhorroClient } from '../src/contracts/ahorro/src/index';
+import Link from 'next/link';
  
 // Tu Contract ID generado en Testnet
 const CONTRACT_ID = 'CB7WHVS6LV65H7V4LOOL7P27DUH7GNOZIZFD33Q5TOPOHCV64ZBI5KTG';
@@ -658,6 +659,13 @@ function HomeView({
               <Sparkles className="h-4 w-4" />
               Buscar un sustituto
             </button>
+            <Link
+              href="/shop"
+              className="sf-glass-strong mt-3 flex min-h-11 w-full items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5"
+            >
+              <ShoppingCart className="h-4 w-4" />
+              Analizar compra en Carrefour
+            </Link>
           </section>
  
           <section className="sf-glass rounded-3xl p-6">
